@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Verdant Bank – Jackson Tiller</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="bk">
+
+  <!-- ============================================
+       LOGIN SECTION
+       ============================================ -->
+
+  <!-- LOGIN -->
+  <div id="login" class="login-box">
+    <div class="logo-row">
+      <div class="logo-sq">
+        <svg width="22" height="22" viewBox="0 0 20 20" fill="none"><rect x="3" y="9" width="14" height="9" rx="2" stroke="#fff" stroke-width="1.5"/><path d="M7 9V6a3 3 0 0 1 6 0v3" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/><circle cx="10" cy="13.5" r="1.5" fill="#fff"/></svg>
+      </div>
+      <div><div class="bank-title">Verdant Bank</div><div class="bank-sub">Online Banking Portal</div></div>
+    </div>
+    <div class="fl"><label>Email or username</label><input id="uid" type="text" placeholder="" value=""/></div>
+    <div class="fl"><label>Password</label><input id="pwd" type="password" placeholder="" value=""/></div>
+    <div id="errmsg" class="err-msg">Incorrect credentials. Use username <strong>Jackson Tiller</strong> and any password.</div>
+    <button class="sign-btn" onclick="doLogin()">Sign in to your account</button>
+    <div class="sec-note">
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><rect x="1.5" y="6" width="10" height="6.5" rx="1.5" stroke="#999" stroke-width="1.2"/><path d="M4 6V4a2.5 2.5 0 0 1 5 0v2" stroke="#999" stroke-width="1.2" stroke-linecap="round"/></svg>
+      256-bit TLS encryption · Your data is fully protected
+    </div>
+  </div>
+
+  <!-- TOKEN VERIFICATION -->
+  <div id="token" class="login-box" style="display:none;">
+    <div class="logo-row">
+      <div class="logo-sq">
+        <svg width="22" height="22" viewBox="0 0 20 20" fill="none"><rect x="3" y="9" width="14" height="9" rx="2" stroke="#fff" stroke-width="1.5"/><path d="M7 9V6a3 3 0 0 1 6 0v3" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/><circle cx="10" cy="13.5" r="1.5" fill="#fff"/></svg>
+      </div>
+      <div><div class="bank-title">Verdant Bank</div><div class="bank-sub">Token Verification</div></div>
+    </div>
+    <div class="fl"><label>Enter verification token</label><input id="tokenInput" type="text" placeholder=""/></div>
+    <div id="tokenErrmsg" class="err-msg">Incorrect token. Please try again.</div>
+    <button class="sign-btn" onclick="doTokenVerify()">Verify Token</button>
+    <div class="sec-note">
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><rect x="1.5" y="6" width="10" height="6.5" rx="1.5" stroke="#999" stroke-width="1.2"/><path d="M4 6V4a2.5 2.5 0 0 1 5 0v2" stroke="#999" stroke-width="1.2" stroke-linecap="round"/></svg>
+      256-bit TLS encryption · Your data is fully protected
+    </div>
+  </div>
+
+  <!-- ============================================
+       DASHBOARD SECTION
+       ============================================ -->
+  <div id="dash" class="dash">
+    <!-- Top Navigation Bar -->
+    <div class="top-nav">
+      <div class="logo-row" style="margin:0">
+        <div class="logo-sq" style="width:32px;height:32px;border-radius:7px">
+          <svg width="17" height="17" viewBox="0 0 20 20" fill="none"><rect x="3" y="9" width="14" height="9" rx="2" stroke="#fff" stroke-width="1.5"/><path d="M7 9V6a3 3 0 0 1 6 0v3" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/><circle cx="10" cy="13.5" r="1.5" fill="#fff"/></svg>
+        </div>
+        <span style="font-size:16px;font-weight:700;color:#111">Verdant Bank</span>
+      </div>
+      <div class="nav-links">
+        <span class="nav-link active">Overview</span>
+        <span class="nav-link">Payments</span>
+        <span class="nav-link">Cards</span>
+        <span class="nav-link">Support <span class="notify-dot"></span></span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <div class="profile-chip">
+          <div class="chip-av"><img src="cuurent JT.jpg" alt="Jackson Tiller" onerror="this.outerHTML='JT'"/></div>
+          <span class="chip-name">Jackson Tiller</span>
+        </div>
+        <span class="logout-link" onclick="doLogout()">Sign out</span>
+      </div>
+    </div>
+
+    <!-- Hero Card - Welcome Section with Balance -->
+    <div class="hero-card">
+      <div class="hero-av"><img src="cuurent JT.jpg" alt="Jackson Tiller" onerror="this.parentElement.outerHTML='<div class=hero-av-fb>JT</div>'"/></div>
+      <div class="hero-info">
+        <div class="hero-greeting">Good day,</div>
+        <div class="hero-name">Jackson Tiller</div>
+        <div class="hero-acct">Premium Checking · •••• 4821</div>
+        <div class="hero-btns">
+          <button class="hero-btn" onclick="openTransfer()">Transfer</button>
+          <button class="hero-btn" onclick="openPay()">Pay</button>
+          <button class="hero-btn">Deposit</button>
+          <button class="hero-btn">Statements</button>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="bal-label">Available balance</div>
+        <div class="bal-amt" id="dashBal">$793,463.76</div>
+        <div class="bal-change">&#8593; +$3,200 this month</div>
+        <div class="bal-upd">Last updated: Apr 20, 2026</div>
+      </div>
+    </div>
+
+    <!-- Statistics Grid - Income, Expenses, Savings Rate -->
+    <div class="stats-grid">
+      <div class="stat-c"><div class="stat-label">Monthly income</div><div class="stat-val pos">+$150,400</div><div class="mini-chart"><div class="bar" style="height:14px"></div><div class="bar" style="height:20px"></div><div class="bar" style="height:16px"></div><div class="bar" style="height:24px"></div><div class="bar hi" style="height:30px"></div></div></div>
+      <div class="stat-c"><div class="stat-label">Monthly expenses</div><div class="stat-val neg">-$12,190</div><div class="mini-chart"><div class="bar rlo" style="height:18px"></div><div class="bar rlo" style="height:12px"></div><div class="bar rlo" style="height:22px"></div><div class="bar rlo" style="height:16px"></div><div class="bar rhi" style="height:20px"></div></div></div>
+      <div class="stat-c"><div class="stat-label">Savings rate</div><div class="stat-val blue">165.8%</div><div class="progress-wrap"><div class="progress-fill" style="width:65.8%"></div></div></div>
+      <div class="stat-c"><div class="stat-label">Active cards</div><div class="stat-val">2 cards</div><div style="font-size:11px;color:#aaa;margin-top:5px">Visa · Mastercard</div></div>
+    </div>
+
+    <!-- Account Cards - Savings & Investments -->
+    <div class="accts-row">
+      <div class="mini-card">
+        <div class="mc-top"><div><div class="mc-title">Savings account</div><div class="mc-num">•••• 9034</div></div><div class="mc-icon"><svg width="20" height="20" viewBox="0 0 18 18" fill="none"><path d="M3 10c0-3.314 2.686-6 6-6s6 2.686 6 6" stroke="#185FA5" stroke-width="1.5"/><path d="M9 10v4M7 14h4" stroke="#185FA5" stroke-width="1.5" stroke-linecap="round"/></svg></div></div>
+        <div class="mc-val">$72,450.00</div><div class="mc-sub">2.4% APY · High-yield savings</div>
+      </div>
+      <div class="mini-card">
+        <div class="mc-top"><div><div class="mc-title">Investment portfolio</div><div class="mc-num">Stocks &amp; ETFs</div></div><div class="mc-icon green"><svg width="20" height="20" viewBox="0 0 18 18" fill="none"><polyline points="2,13 6,8 10,11 16,4" stroke="#3B6D11" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <div class="mc-val green">$24,870.00</div><div class="mc-sub">+8.3% this quarter</div>
+      </div>
+    </div>
+
+    <!-- Recent Transactions Section -->
+    <div>
+        <h3>Recent transactions</h3>
+        <div class="filter-tabs">
+          <div class="ftab on" onclick="filterTxn('all',this)">All</div>
+          <div class="ftab" onclick="filterTxn('cr',this)">Credits</div>
+          <div class="ftab" onclick="filterTxn('dr',this)">Debits</div>
+        </div>
+      </div>
+      <div class="txn-card" id="txnList">
+        <div class="txn-row" data-type="cr"><div class="t-icon ico-g"><svg width="17" height="17" viewBox="0 0 16 16" fill="none"><path d="M8 12V4M4 8l4-4 4 4" stroke="#3B6D11" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="t-meta"><div class="t-name">Direct deposit — Employer <span class="t-badge badge-cr">Credit</span></div><div class="t-sub">Payroll · Apr 18, 2026</div></div><div class="t-right"><div class="t-amt cr">+$130,200.00</div><div class="t-date">Completed</div></div></div>
+        <div class="txn-row" data-type="dr"><div class="t-icon ico-r"><svg width="17" height="17" viewBox="0 0 16 16" fill="none"><path d="M8 4v8M12 8l-4 4-4-4" stroke="#A32D2D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="t-meta"><div class="t-name">Even center<span class="t-badge badge-dr">Debit</span></div><div class="t-sub">Property management · Apr 15, 2026</div></div><div class="t-right"><div class="t-amt dr">-$270,250.00</div><div class="t-date">Completed</div></div></div>
+        <div class="txn-row" data-type="dr"><div class="t-icon ico-a"><svg width="17" height="17" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="#854F0B" stroke-width="1.5"/><path d="M8 5.5v3l2 1.5" stroke="#854F0B" stroke-width="1.3" stroke-linecap="round"/></svg></div><div class="t-meta"><div class="t-name">Chris Hamilton<span class="t-badge badge-dr">Debit</span></div><div class="t-sub">Logistics · Apr 13, 2026</div></div><div class="t-right"><div class="t-amt dr">+$21,537.98</div><div class="t-date">Completed</div></div></div>
+        <div class="txn-row" data-type="cr"><div class="t-icon ico-g"><svg width="17" height="17" viewBox="0 0 16 16" fill="none"><path d="M8 12V4M4 8l4-4 4 4" stroke="#3B6D11" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="t-meta"><div class="t-name">Barnsley Jude <span class="t-badge badge-cr">Credit</span></div><div class="t-sub">Client payment · Apr 10, 2026</div></div><div class="t-right"><div class="t-amt cr">+$50,877.00</div><div class="t-date">Completed</div></div></div>
+        <div class="txn-row" data-type="dr"><div class="t-icon ico-b"><svg width="17" height="17" viewBox="0 0 16 16" fill="none"><rect x="3" y="5" width="10" height="7" rx="1.5" stroke="#185FA5" stroke-width="1.3"/><path d="M6 5V4a2 2 0 0 1 4 0v1" stroke="#185FA5" stroke-width="1.3"/></svg></div><div class="t-meta"><div class="t-name">Netflix subscription <span class="t-badge badge-dr">Debit</span></div><div class="t-sub">Streaming · Apr 8, 2026</div></div><div class="t-right"><div class="t-amt dr">-$117.99</div><div class="t-date">Completed</div></div></div>
+        <div class="txn-row" data-type="dr"><div class="t-icon ico-r"><svg width="17" height="17" viewBox="0 0 16 16" fill="none"><path d="M8 4v8M12 8l-4 4-4-4" stroke="#A32D2D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="t-meta"><div class="t-name">Electricity bill — PowerGrid <span class="t-badge badge-dr">Debit</span></div><div class="t-sub">Utilities · Apr 5, 2026</div></div><div class="t-right"><div class="t-amt dr">-$882.50</div><div class="t-date">Completed</div></div></div>
+        <div class="txn-row" data-type="cr"><div class="t-icon ico-g"><svg width="17" height="17" viewBox="0 0 16 16" fill="none"><path d="M8 12V4M4 8l4-4 4 4" stroke="#3B6D11" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="t-meta"><div class="t-name">Direct deposit — Employer <span class="t-badge badge-cr">Credit</span></div><div class="t-sub">Payroll · Apr 3, 2026</div></div><div class="t-right"><div class="t-amt cr">+$8,200.00</div><div class="t-date">Completed</div></div></div>
+        <div class="txn-row" data-type="dr"><div class="t-icon ico-a"><svg width="17" height="17" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="#854F0B" stroke-width="1.5"/><path d="M8 5.5v3l2 1.5" stroke="#854F0B" stroke-width="1.3" stroke-linecap="round"/></svg></div><div class="t-meta"><div class="t-name">Uber Eats <span class="t-badge badge-dr">Debit</span></div><div class="t-sub">Food delivery · Apr 1, 2026</div></div><div class="t-right"><div class="t-amt dr">-$263.20</div><div class="t-date">Completed</div></div></div>
+        <div class="txn-row" data-type="dr"><div class="t-icon ico-b"><svg width="17" height="17" viewBox="0 0 16 16" fill="none"><rect x="3" y="5" width="10" height="7" rx="1.5" stroke="#185FA5" stroke-width="1.3"/><path d="M6 5V4a2 2 0 0 1 4 0v1" stroke="#185FA5" stroke-width="1.3"/></svg></div><div class="t-meta"><div class="t-name">Amazon purchase <span class="t-badge badge-dr">Debit</span></div><div class="t-sub">Online retail · Mar 28, 2026</div></div><div class="t-right"><div class="t-amt dr">-$31,029.99</div><div class="t-date">Completed</div></div></div>
+        <div class="txn-row" data-type="cr"><div class="t-icon ico-p"><svg width="17" height="17" viewBox="0 0 16 16" fill="none"><path d="M8 12V4M4 8l4-4 4 4" stroke="#534AB7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="t-meta"><div class="t-name">Zelle transfer received <span class="t-badge badge-cr">Credit</span></div><div class="t-sub">Peer transfer · Mar 25, 2026</div></div><div class="t-right"><div class="t-amt cr">+$237,500.00</div><div class="t-date">Completed</div></div></div>
+        <div class="txn-row" data-type="dr" id="spotifyRow"><div class="t-icon ico-a"><svg width="17" height="17" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="#854F0B" stroke-width="1.5"/><path d="M8 5.5v3l2 1.5" stroke="#854F0B" stroke-width="1.3" stroke-linecap="round"/></svg></div><div class="t-meta"><div class="t-name">Spotify Premium <span class="t-badge badge-pend">Pending</span></div><div class="t-sub">Subscription · Mar 22, 2026</div></div><div class="t-right"><div class="t-amt dr">-$141,564.99</div><div class="t-date">Pending</div></div></div>
+      </div>
+    </div>
+    <div class="footer-note"></div>
+  </div>
+</div>
+
+  <!-- ============================================
+       PAYMENT MODAL
+       ============================================ -->
+  <div class="modal-overlay" id="payModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 id="payModalTitle">Make a payment</h2>
+      <button class="close-btn" onclick="closePay()">&#x2715;</button>
+    </div>
+    <div class="modal-body">
+
+      <!-- Step bar -->
+      <div class="step-bar">
+        <div class="step-item"><div class="step-circle active" id="psc1">1</div><div class="step-label active" id="psl1">Payee</div></div>
+        <div class="step-line" id="pline1"></div>
+        <div class="step-item"><div class="step-circle" id="psc2">2</div><div class="step-label" id="psl2">Review</div></div>
+        <div class="step-line" id="pline2"></div>
+        <div class="step-item"><div class="step-circle" id="psc3">3</div><div class="step-label" id="psl3">PIN</div></div>
+        <div class="step-line" id="pline3"></div>
+        <div class="step-item"><div class="step-circle" id="psc4">4</div><div class="step-label" id="psl4">Done</div></div>
+      </div>
+
+      <!-- STEP 1: Payee details -->
+      <div id="pstep1">
+        <div style="margin-bottom:14px">
+          <div style="font-size:12px;font-weight:500;color:#555;margin-bottom:8px">Payment method</div>
+          <div class="pay-method-grid">
+            <div class="pay-method-btn selected" id="pm-instant" onclick="selectPayMethod('instant')">
+              <div class="pm-icon">&#9889;</div>
+              <div class="pm-label">Instant pay</div>
+              <div class="pm-sub">Phone or email</div>
+            </div>
+            <div class="pay-method-btn" id="pm-bill" onclick="selectPayMethod('bill')">
+              <div class="pm-icon">&#128196;</div>
+              <div class="pm-label">Pay a bill</div>
+              <div class="pm-sub">Utility / service</div>
+            </div>
+          </div>
+        </div>
+        <hr class="divider"/>
+
+        <!-- Instant pay fields -->
+        <div id="payFields-instant">
+          <div class="mfl"><label>Recipient name</label><input id="pay-name" type="text" placeholder=""/></div>
+          <div id="err-pay-name" class="err-inline">Please enter the recipient's name.</div>
+          <div class="mfl"><label>Phone number or email</label><input id="pay-contact" type="text" placeholder=""/></div>
+          <div id="err-pay-contact" class="err-inline">Please enter a valid phone or email.</div>
+          <div class="mfl">
+            <label>Category</label>
+            <select id="pay-category">
+              <option value="">Select category</option>
+              <option value="Rent">Rent</option>
+              <option value="Food & Dining">Food &amp; Dining</option>
+              <option value="Shopping">Shopping</option>
+              <option value="Transportation">Transportation</option>
+              <option value="Entertainment">Entertainment</option>
+              <option value="Personal">Personal</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div id="err-pay-category" class="err-inline">Please select a category.</div>
+        </div>
+
+        <!-- Bill pay fields -->
+        <div id="payFields-bill" style="display:none">
+          <div class="mfl"><label>Biller / company name</label><input id="pay-biller" type="text" placeholder="e.g. PowerGrid Energy"/></div>
+          <div id="err-pay-biller" class="err-inline">Please enter the biller's name.</div>
+          <div class="mfl"><label>Account / reference number</label><input id="pay-billref" type="text" placeholder="e.g. INV-20260420"/></div>
+          <div id="err-pay-billref" class="err-inline">Please enter a reference number.</div>
+          <div class="mfl">
+            <label>Bill type</label>
+            <select id="pay-billtype">
+              <option value="">Select bill type</option>
+              <option value="Electricity">Electricity</option>
+              <option value="Water">Water</option>
+              <option value="Internet">Internet</option>
+              <option value="Gas">Gas</option>
+              <option value="Phone">Phone</option>
+              <option value="Insurance">Insurance</option>
+              <option value="Subscription">Subscription</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div id="err-pay-billtype" class="err-inline">Please select a bill type.</div>
+        </div>
+
+        <div class="mfl"><label>Amount (USD)</label><div class="amt-prefix"><span>$</span><input id="pay-amount" type="number" placeholder="0.00" min="1"/></div></div>
+        <div id="err-pay-amount" class="err-inline">Please enter a valid amount.</div>
+        <div class="mfl"><label>Note (optional)</label><input id="pay-note" type="text" placeholder="e.g. March invoice"/></div>
+
+        <div class="modal-footer">
+          <button class="btn-secondary" onclick="closePay()">Cancel</button>
+          <button class="btn-primary" onclick="payGoStep2()">Continue &rarr;</button>
+        </div>
+      </div>
+
+      <!-- STEP 2: Review -->
+      <div id="pstep2" style="display:none">
+        <div class="review-box">
+          <div class="review-row"><span class="rv-label">Method</span><span class="rv-val" id="prv-method"></span></div>
+          <div class="review-row"><span class="rv-label" id="prv-tolabel">To</span><span class="rv-val" id="prv-to"></span></div>
+          <div class="review-row"><span class="rv-label" id="prv-contactlabel">Contact</span><span class="rv-val" id="prv-contact"></span></div>
+          <div class="review-row"><span class="rv-label" id="prv-catlabel">Category</span><span class="rv-val" id="prv-category"></span></div>
+          <div class="review-row"><span class="rv-label">Note</span><span class="rv-val" id="prv-note">—</span></div>
+          <div class="review-row"><span class="rv-label">Amount</span><span class="rv-val big" id="prv-amount"></span></div>
+        </div>
+        <p style="font-size:12px;color:#999;margin-bottom:4px">Please review your payment before confirming. Payments are processed immediately.</p>
+        <div class="modal-footer">
+          <button class="btn-secondary" onclick="payBackStep1()">&#8592; Edit</button>
+          <button class="btn-primary" onclick="payGoStep3()">Confirm &rarr;</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: PIN -->
+      <div id="pstep3" style="display:none">
+        <p style="font-size:13px;color:#555;margin-bottom:.5rem;text-align:center">Enter your 4-digit transaction PIN to authorise this payment.</p>
+        <div class="pin-grid" id="payPinDisplay">
+          <div class="pin-dot" id="ppd0">&#8212;</div>
+          <div class="pin-dot" id="ppd1">&#8212;</div>
+          <div class="pin-dot" id="ppd2">&#8212;</div>
+          <div class="pin-dot" id="ppd3">&#8212;</div>
+        </div>
+        <div id="pay-pin-err" style="font-size:12px;color:#c0392b;text-align:center;display:none;margin-bottom:6px">Incorrect PIN.</div>
+        <div class="numpad">
+          <button class="np-btn" onclick="payPinPress('1')">1</button>
+          <button class="np-btn" onclick="payPinPress('2')">2</button>
+          <button class="np-btn" onclick="payPinPress('3')">3</button>
+          <button class="np-btn" onclick="payPinPress('4')">4</button>
+          <button class="np-btn" onclick="payPinPress('5')">5</button>
+          <button class="np-btn" onclick="payPinPress('6')">6</button>
+          <button class="np-btn" onclick="payPinPress('7')">7</button>
+          <button class="np-btn" onclick="payPinPress('8')">8</button>
+          <button class="np-btn" onclick="payPinPress('9')">9</button>
+          <button class="np-btn" onclick="payPinPress('clear')" style="font-size:12px;color:#888">CLR</button>
+          <button class="np-btn" onclick="payPinPress('0')">0</button>
+          <button class="np-btn del" onclick="payPinPress('del')">&#9003;</button>
+        </div>
+        <div class="modal-footer" style="margin-top:1rem">
+          <button class="btn-secondary" onclick="payBackStep2()">&#8592; Back</button>
+          <button class="btn-primary" id="paySendBtn" onclick="paySubmitPin()" disabled>Send payment</button>
+        </div>
+      </div>
+
+      <!-- STEP 4: Success -->
+      <div id="pstep4" style="display:none">
+        <div class="success-screen">
+          <div class="success-icon">
+            <svg viewBox="0 0 30 30" fill="none"><circle cx="15" cy="15" r="14" stroke="#3B6D11" stroke-width="1.5"/><path d="M8 15l5 5 9-9" stroke="#3B6D11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Payment sent!</h3>
+          <p id="paySuccessMsg">Your payment has been processed successfully.</p>
+          <div class="ref-badge" id="payRefBadge">REF: VB-000000</div>
+          <div class="modal-footer" style="margin-top:1.5rem">
+            <button class="btn-primary" onclick="closePay()">Done</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+  <!-- ============================================
+       TRANSFER MODAL
+       ============================================ -->
+  <div class="modal-overlay" id="transferModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 id="modalTitle">Transfer funds</h2>
+      <button class="close-btn" onclick="closeTransfer()">&#x2715;</button>
+    </div>
+    <div class="modal-body">
+
+      <!-- Step indicator -->
+      <div class="step-bar">
+        <div class="step-item">
+          <div class="step-circle active" id="sc1">1</div>
+          <div class="step-label active" id="sl1">Recipient</div>
+        </div>
+        <div class="step-line" id="line1"></div>
+        <div class="step-item">
+          <div class="step-circle" id="sc2">2</div>
+          <div class="step-label" id="sl2">Review</div>
+        </div>
+        <div class="step-line" id="line2"></div>
+        <div class="step-item">
+          <div class="step-circle" id="sc3">3</div>
+          <div class="step-label" id="sl3">PIN</div>
+        </div>
+        <div class="step-line" id="line3"></div>
+        <div class="step-item">
+          <div class="step-circle" id="sc4">4</div>
+          <div class="step-label" id="sl4">Done</div>
+        </div>
+      </div>
+
+      <!-- STEP 1: Recipient details -->
+      <div id="step1">
+        <div class="mfl"><label>Recipient full name</label><input id="recName" type="text" placeholder=""/></div>
+        <div id="err-recName" class="err-inline">Please enter the recipient's name.</div>
+        <div class="mfl"><label>Account number</label><input id="recAcct" type="text" placeholder="" maxlength="17"/></div>
+        <div id="err-recAcct" class="err-inline">Please enter a valid account number.</div>
+        <div class="mfl"><label>Bank name</label><input id="recBank" type="text" placeholder=""/></div>
+        <div id="err-recBank" class="err-inline">Please enter the bank name.</div>
+        <div class="mfl"><label>Routing number</label><input id="recRouting" type="text" placeholder="" maxlength="9"/></div>
+        <div id="err-recRouting" class="err-inline">Routing number must be 9 digits.</div>
+        <div class="mfl"><label>Amount (USD)</label><div class="amt-prefix"><span>$</span><input id="recAmount" type="number" placeholder="0.00" min="1"/></div></div>
+        <div id="err-recAmount" class="err-inline">Please enter a valid amount.</div>
+        <div class="mfl"><label>Note (optional)</label><input id="recNote" type="text" placeholder=""/></div>
+        <div class="modal-footer">
+          <button class="btn-secondary" onclick="closeTransfer()">Cancel</button>
+          <button class="btn-primary" onclick="goStep2()">Continue &rarr;</button>
+        </div>
+      </div>
+
+      <!-- STEP 2: Review -->
+      <div id="step2" style="display:none">
+        <div class="review-box">
+          <div class="review-row"><span class="rv-label">To</span><span class="rv-val" id="rv-name"></span></div>
+          <div class="review-row"><span class="rv-label">Account</span><span class="rv-val" id="rv-acct"></span></div>
+          <div class="review-row"><span class="rv-label">Bank</span><span class="rv-val" id="rv-bank"></span></div>
+          <div class="review-row"><span class="rv-label">Routing</span><span class="rv-val" id="rv-routing"></span></div>
+          <div class="review-row"><span class="rv-label">Note</span><span class="rv-val" id="rv-note">—</span></div>
+          <div class="review-row"><span class="rv-label">Amount</span><span class="rv-val big" id="rv-amount"></span></div>
+        </div>
+        <p style="font-size:12px;color:#999;margin-bottom:4px">Please verify all details before proceeding. Transfers cannot be reversed once sent.</p>
+        <div class="modal-footer">
+          <button class="btn-secondary" onclick="goBackStep1()">&#8592; Edit</button>
+          <button class="btn-primary" onclick="goStep3()">Confirm &rarr;</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: PIN -->
+      <div id="step3" style="display:none">
+        <p style="font-size:13px;color:#555;margin-bottom:.5rem;text-align:center">Enter your 4-digit transaction PIN to authorise this transfer.</p>
+        <div class="pin-grid" id="pinDisplay">
+          <div class="pin-dot" id="pd0">&#8212;</div>
+          <div class="pin-dot" id="pd1">&#8212;</div>
+          <div class="pin-dot" id="pd2">&#8212;</div>
+          <div class="pin-dot" id="pd3">&#8212;</div>
+        </div>
+        <div id="pin-err" style="font-size:12px;color:#c0392b;text-align:center;display:none;margin-bottom:6px">Incorrect PIN.</div>
+        <div class="numpad">
+          <button class="np-btn" onclick="pinPress('1')">1</button>
+          <button class="np-btn" onclick="pinPress('2')">2</button>
+          <button class="np-btn" onclick="pinPress('3')">3</button>
+          <button class="np-btn" onclick="pinPress('4')">4</button>
+          <button class="np-btn" onclick="pinPress('5')">5</button>
+          <button class="np-btn" onclick="pinPress('6')">6</button>
+          <button class="np-btn" onclick="pinPress('7')">7</button>
+          <button class="np-btn" onclick="pinPress('8')">8</button>
+          <button class="np-btn" onclick="pinPress('9')">9</button>
+          <button class="np-btn" onclick="pinPress('clear')" style="font-size:12px;color:#888">CLR</button>
+          <button class="np-btn" onclick="pinPress('0')">0</button>
+          <button class="np-btn del" onclick="pinPress('del')">&#9003;</button>
+        </div>
+        <div class="modal-footer" style="margin-top:1rem">
+          <button class="btn-secondary" onclick="goBackStep2()">&#8592; Back</button>
+          <button class="btn-primary" id="sendBtn" onclick="submitPin()" disabled>Send transfer</button>
+        </div>
+      </div>
+
+      <!-- STEP 4: Success -->
+      <div id="step4" style="display:none">
+        <div class="success-screen">
+          <div class="success-icon">
+            <svg viewBox="0 0 30 30" fill="none"><circle cx="15" cy="15" r="14" stroke="#3B6D11" stroke-width="1.5"/><path d="M8 15l5 5 9-9" stroke="#3B6D11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Transfer sent!</h3>
+          <p id="successMsg">Your transfer has been processed successfully.</p>
+          <div class="ref-badge" id="refBadge">REF: VB-000000</div>
+          <div class="modal-footer" style="margin-top:1.5rem">
+            <button class="btn-primary" onclick="closeTransfer()">Done</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
