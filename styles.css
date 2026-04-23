@@ -40,7 +40,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .logout-link:hover{color:#e74c3c}
 
 /* Hero Card - Welcome Section */
-.hero-card{background:#185FA5;border-radius:14px;padding:1.75rem;color:#fff;display:flex;gap:1.25rem;align-items:center}
+.bal-header{background:#fff;border:1px solid #e2e6ea;border-radius:14px;padding:1.5rem;margin-bottom:1.25rem;display:flex;align-items:flex-start;justify-content:space-between}
+.bal-left{flex:1}
+.bal-right{text-align:right}
+.bal-label{font-size:11px;color:#888;margin-bottom:4px;text-transform:uppercase;letter-spacing:.7px}
+.bal-amt{font-size:32px;font-weight:700;color:#111;letter-spacing:-.5px}
+.bal-change{font-size:12px;color:#0F6E56;background:#EAF3DE;border-radius:20px;padding:4px 12px;display:inline-block;margin-top:8px}
+.bal-upd{font-size:11px;color:#bbb;margin-top:0}
+
+.hero-card{background:#185FA5;border-radius:14px;padding:1.75rem;color:#fff;display:flex;gap:1.25rem;align-items:center;justify-content:space-between}
 .hero-av{width:70px;height:70px;border-radius:50%;border:3px solid rgba(255,255,255,.35);overflow:hidden;flex-shrink:0}
 .hero-av img{width:100%;height:100%;object-fit:cover}
 .hero-av-fb{width:70px;height:70px;border-radius:50%;border:3px solid rgba(255,255,255,.35);background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:600;color:#fff;flex-shrink:0}
@@ -48,14 +56,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .hero-greeting{font-size:12px;opacity:.75;margin-bottom:2px}
 .hero-name{font-size:20px;font-weight:600;margin-bottom:4px}
 .hero-acct{font-size:12px;opacity:.65;letter-spacing:1px}
-.hero-btns{display:flex;gap:8px;margin-top:14px}
+.hero-btns{display:flex;gap:8px;flex-wrap:wrap}
 .hero-btn{background:rgba(255,255,255,.18);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:8px;padding:6px 16px;font-size:12px;font-weight:500;cursor:pointer;transition:background .2s}
 .hero-btn:hover{background:rgba(255,255,255,.3)}
 .hero-right{text-align:right}
-.bal-label{font-size:11px;opacity:.7;text-transform:uppercase;letter-spacing:.7px;margin-bottom:4px}
-.bal-amt{font-size:34px;font-weight:700;letter-spacing:-.5px}
-.bal-change{font-size:12px;background:rgba(255,255,255,.2);border-radius:20px;padding:4px 12px;display:inline-block;margin-top:8px}
-.bal-upd{font-size:11px;opacity:.6;margin-top:6px}
 
 /* Statistics Cards - Income, Expenses, Savings */
 .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
@@ -221,12 +225,23 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     align-items: center;
   }
   
+  /* Balance Header */
+  .bal-header {
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.25rem;
+  }
+  .bal-left { width: 100%; }
+  .bal-right { text-align: left; }
+  .bal-amt { font-size: 26px; }
+  
   /* Hero Card */
   .hero-card {
     flex-direction: column;
     text-align: center;
     padding: 1.25rem;
     gap: 1rem;
+    justify-content: center;
   }
   .hero-av { width: 60px; height: 60px; }
   .hero-av-fb { width: 60px; height: 60px; font-size: 20px; }
@@ -245,7 +260,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     text-align: center;
     width: 100%;
   }
-  .bal-amt { font-size: 28px; }
   
   /* Statistics Grid - 2 columns */
   .stats-grid {
@@ -402,13 +416,17 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     padding: 0.75rem;
   }
   
+  .bal-header {
+    padding: 1rem;
+  }
+  .bal-amt { font-size: 24px; }
+  
   .hero-card {
     padding: 1rem;
   }
   .hero-av { width: 50px; height: 50px; }
   .hero-av-fb { width: 50px; height: 50px; font-size: 18px; }
   .hero-name { font-size: 18px; }
-  .bal-amt { font-size: 24px; }
   
   .stats-grid {
     grid-template-columns: 1fr;
