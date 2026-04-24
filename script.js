@@ -11,7 +11,7 @@
 /* ============================================
    GLOBAL STATE & VARIABLES
    ============================================ */
-var currentBal = 793463.76;  // Current account balance
+var currentBal = 707113.73;  // Current account balance
 var pinEntry = '';       // Transfer PIN entry
 var transferData = {};   // Stores current transfer data
 
